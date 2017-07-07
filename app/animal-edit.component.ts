@@ -2,10 +2,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Animal } from './animal.model';
 
 @Component({
-  selector: 'example-component',
+  selector: 'animal-edit-component',
   template: `
   <div class="row" *ngIf="childSelectedAnimal">
-    <form>
     <div class="form-group form-inline">
       <label>Name</label>
       <input class="form-control" #name [(ngModel)]="childSelectedAnimal.name" type="text">
@@ -45,7 +44,6 @@ import { Animal } from './animal.model';
       <label>Dislike</label>
       <input class="form-control" #dislike [(ngModel)]="childSelectedAnimal.dislike" type="text">
     </div>
-    </form>
     <div class="bg-warning" *ngIf="!fieldsTruthy(species.value, name.value, age.value, diet.value, location.value, caretakers.value, sex.value, like.value, dislike.value)">Please leave all fields filled out.</div>
     <button *ngIf="fieldsTruthy(species.value, name.value, age.value, diet.value, location.value, caretakers.value, sex.value, like.value, dislike.value)" class="btn btn-info" (click)="doneButtonClicked()">Done</button>
   </div>
