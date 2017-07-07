@@ -8,7 +8,7 @@ import { Animal } from './animal.model';
     <div class="container">
       <animal-new-component (formSubmitSender)="addAnimal($event)"></animal-new-component>
       <animal-edit-component [childSelectedAnimal]="selectedAnimal" (doneClickSender)="editAnimalDone()"></animal-edit-component>
-      <animal-list-component [childAnimalList]="masterAnimalList" (selectSender)="editAnimal($event)"></animal-list-component>
+      <animal-list-component [childAnimalList]="masterAnimalList" [totalCaretakers]="addCaretakers()" (selectSender)="editAnimal($event)"></animal-list-component>
     </div>
   `
 })
@@ -21,6 +21,12 @@ export class AppComponent {
     new Animal("Ocelot", "Prince", 4, "Carnivore", "Tropical Rain Forest Building", 6, "Male", "Laying in the sunshine", "Toys that aren't rope"),
     new Animal("Northwest Black Tailed Deer", "Tinkerbell", 8, "Herbivore", "Northern Trail", 2, "Female", "Delicate roots and leaves", "Loud Noises")
   ];
+
+  addCaretakers() {
+    let total: number = 0;
+    this.masterAnimalList.forEach(animal => total += animal.caretakers);
+    return total;
+  }
 
   addAnimal(animal: Animal) {
     this.masterAnimalList.push(animal);
