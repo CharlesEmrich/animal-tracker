@@ -10,6 +10,7 @@ import { Animal } from './animal.model';
         <option value="youngAnimals">Animals Younger Than 2 Years Old</option>
         <option value="oldAnimals">Animals 2 Years Old or Older</option>
       </select>
+      <span>Caretakers Required: {{totalCareTakers}}</span>
     </div>
     <div class="row">
       <div class="well" *ngFor="let animal of childAnimalList | byAge:ageFilter">
@@ -39,7 +40,13 @@ export class AnimalListComponent {
   @Input() childAnimalList: Animal[];
   @Output() selectSender = new EventEmitter();
   ageFilter: string = "allAnimals";
+  totalCareTakers: number = this.addCareTakers();
 
+  addCareTakers() {
+    let total: number = 0;
+    this.childAnimalList.forEach(animal => total += animal.caretakers);
+    return total;
+  }
   selectAnimal(animal: Animal) {
     this.selectSender.emit(animal);
   }
