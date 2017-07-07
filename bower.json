@@ -1,9 +1,8 @@
 {
-  "name": "tap-room",
+  "name": "animal-tracker",
   "description": "",
   "main": "",
   "authors": [
-    "Joshua Fairchild <Joshua.fairchild429@gmail.com>",
     "Charles Emrich <charles.emrich@gmail.com>"
   ],
   "license": "MIT",

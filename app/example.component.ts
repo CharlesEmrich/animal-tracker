@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {Model} from './model.model';
+import { Component } from '@angular/core';
+import { Animal } from './animal.model';
 
 @Component({
   selector: 'example-component',
@@ -9,5 +9,5 @@ import {Model} from './model.model';
 })
 
 export class ExampleComponent {
-  
+
 }
