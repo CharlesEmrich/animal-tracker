@@ -4,7 +4,10 @@ import { Animal } from './animal.model';
 @Component({
   selector: 'animal-new-component',
   template: `
-    <div class="row">
+    <div class="row" *ngIf="!formVisible">
+      <button (click)="toggleForm()"> Add an Animal </button>
+    </div>
+    <div class="row" *ngIf="formVisible">
       <form>
       <div class="form-group form-inline">
         <label>Name</label>
@@ -48,16 +51,21 @@ import { Animal } from './animal.model';
       </form>
       <button class="btn btn-info" (click)="
       formSubmit(species.value, name.value, age.value, diet.value, location.value, caretakers.value, sex.value, like.value, dislike.value);
-      species.value=''; name.value=''; age.value=''; diet.value=''; location.value=''; caretakers.value=''; sex.value=''; like.value=''; dislike.value='';">Add New Animal</button>
+      species.value=''; name.value=''; age.value=''; diet.value=''; location.value=''; caretakers.value=''; sex.value=''; like.value=''; dislike.value='';">To the Zoo</button>
     </div>
   `
 })
 
 export class AnimalNewComponent {
   @Output() formSubmitSender = new EventEmitter();
+  formVisible: boolean = false;
 
+  toggleForm() {
+    this.formVisible  ? this.formVisible = false : this.formVisible = true;
+  }
   formSubmit(species: string, name: string, age: string, diet: string, location: string, caretakers: string, sex: string, like: string, dislike: string) {
     if (species && name && parseInt(age) && diet && location && parseInt(caretakers) && sex && like && dislike) {
+      this.formVisible = false;
       const emittedAnimal = new Animal(species, name, parseInt(age), diet, location, parseInt(caretakers), sex, like, dislike);
       this.formSubmitSender.emit(emittedAnimal);
     }
