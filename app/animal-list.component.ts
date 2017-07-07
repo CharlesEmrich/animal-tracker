@@ -24,7 +24,7 @@ import { Animal } from './animal.model';
           </ul>
         </div>
         <div class="row">
-
+          <button class="btn btn-info" (click)="selectAnimal(animal)">Edit</button>
         </div>
       </div>
     </div>
@@ -33,5 +33,9 @@ import { Animal } from './animal.model';
 
 export class AnimalListComponent {
   @Input() childAnimalList: Animal[];
+  @Output() selectSender = new EventEmitter();
 
+  selectAnimal(animal: Animal) {
+    this.selectSender.emit(animal);
+  }
 }

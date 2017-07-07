@@ -3,12 +3,14 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {AnimalListComponent} from './animal-list.component';
 import {AnimalNewComponent} from './animal-new.component';
+import {AnimalEditComponent} from './animal-edit.component';
 
 @NgModule({
   imports: [BrowserModule],
   declarations: [ AppComponent,
                   AnimalListComponent,
-                  AnimalNewComponent
+                  AnimalNewComponent,
+                  AnimalEditComponent
                 ],
   bootstrap: [AppComponent]
 })
