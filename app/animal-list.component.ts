@@ -5,10 +5,14 @@ import { Animal } from './animal.model';
   selector: 'animal-list-component',
   template: `
     <div class="row well">
-
+      <select class="form-control form-group form-inline" (change)="onChange($event.target.value)">
+        <option value="allAnimals">All Animals</option>
+        <option value="youngAnimals">Animals Younger Than 2 Years Old</option>
+        <option value="oldAnimals">Animals 2 Years Old or Older</option>
+      </select>
     </div>
     <div class="row">
-      <div class="well" *ngFor="let animal of childAnimalList">
+      <div class="well" *ngFor="let animal of childAnimalList | byAge:ageFilter">
         <div class="row">
           <h2>{{animal.name}} : {{animal.species}}</h2>
         </div>
@@ -34,8 +38,12 @@ import { Animal } from './animal.model';
 export class AnimalListComponent {
   @Input() childAnimalList: Animal[];
   @Output() selectSender = new EventEmitter();
+  ageFilter: string = "allAnimals";
 
   selectAnimal(animal: Animal) {
     this.selectSender.emit(animal);
+  }
+  onChange(menuOption) {
+    this.ageFilter = menuOption;
   }
 }
